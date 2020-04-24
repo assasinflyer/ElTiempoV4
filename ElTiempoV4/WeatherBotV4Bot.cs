@@ -10,7 +10,7 @@ namespace WeatherBotV4Bot
 {
     public class WeatherBotV4Bot : IBot
     {
-        public static readonly string LuisKey = "WeatherBotv4Bot";
+        public static readonly string LuisKey = "WeatherBotV4Bot";
         private readonly BotService _services;
 
         public WeatherBotV4Bot(BotService services)
@@ -32,9 +32,15 @@ namespace WeatherBotV4Bot
                 {
                     var location = LuisParser.GetEntityValue(recognizer);
 
+                    var ro = await WeatherService.GetWeather(location);
+
+                    if(ro == null)
+                    {
+                        location = "";
+                    }
+
                     if (location.ToString() != string.Empty)
                     {
-                        var ro = await WeatherService.GetWeather(location);
                         var weather = $"{ro.weather.First().main} ({ro.main.temp.ToString("N2")} °C)";
 
                         var typing = Activity.CreateTypingActivity();
@@ -48,6 +54,10 @@ namespace WeatherBotV4Bot
                         };
 
                         await turnContext.SendActivitiesAsync(activities);
+                    }
+                    else if (ro == null)
+                    {
+                        await turnContext.SendActivityAsync($"==>Location not found!");
                     }
                     else
                         await turnContext.SendActivityAsync($"==>Can't understand you, sorry!");

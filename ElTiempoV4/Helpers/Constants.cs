@@ -7,7 +7,7 @@ namespace WeatherBotV4Bot.Helpers
 {
     public static class Constants
     {
-        public readonly static string WeatherArgs = "WeatherEntities";
+        public readonly static string LuisArgs = "LuisEntities";
         public readonly static string LocationLabel = "Location";
         public readonly static string LocationPatternLabel = "Location_PatternAny";
 
