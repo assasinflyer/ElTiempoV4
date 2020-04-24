@@ -10,6 +10,14 @@ namespace WeatherBotV4Bot.Helpers
         {
             foreach (var entity in result.Entities)
             {
+                dynamic value = JsonConvert.DeserializeObject<dynamic>(entity.Value.ToString());
+
+                if (value != null)
+                {
+                    return value[0].Value;
+                }
+
+                /*
                 var location = JObject.Parse(entity.Value.ToString())[Constants.LocationLabel];
                 var locationPattern = JObject.Parse(entity.Value.ToString())[Constants.LocationPatternLabel];
 
@@ -23,6 +31,7 @@ namespace WeatherBotV4Bot.Helpers
                     if (locationPattern != null)
                         return value.Location_PatternAny[0].text;
                 }
+                */
             }
 
             return string.Empty;
