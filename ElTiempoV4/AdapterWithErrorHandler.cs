@@ -8,7 +8,7 @@ using Microsoft.Bot.Builder.TraceExtensions;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
-namespace ElTiempoV4
+namespace WeatherBotV4Bot
 {
     public class AdapterWithErrorHandler : BotFrameworkHttpAdapter
     {
