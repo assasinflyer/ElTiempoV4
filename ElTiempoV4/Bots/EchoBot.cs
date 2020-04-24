@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using Microsoft.Bot.Builder;
 using Microsoft.Bot.Schema;
 
-namespace ElTiempoV4.Bots
+namespace WeatherBotV4Bot.Bots
 {
     public class EchoBot : ActivityHandler
     {
